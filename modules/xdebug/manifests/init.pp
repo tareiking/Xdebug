@@ -1,6 +1,8 @@
 class xdebug (
-  $path = "/vagrant/extensions/xdebug"
+  $path        = "/vagrant/extensions/xdebug",
+  $remote_host = $chassis_config[hosts]
 ) {
+  $hosts = join($chassis_config[hosts],",")
   package { 'php5-xdebug':
     ensure => latest,
     require => Package['php5-fpm']
