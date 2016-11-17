@@ -4,7 +4,7 @@ class xdebug (
   $php_version = $chassis_config[php]
 ) {
   $hosts = join($chassis_config[hosts],",")
-  if versioncmp( "${php_version}", '5.6') < 1 {
+  if versioncmp( "${php_version}", '5.6') < 0 {
     package { 'php5-xdebug':
         ensure => latest,
         require => Package['php5-fpm']
