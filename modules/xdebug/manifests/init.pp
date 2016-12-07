@@ -36,8 +36,5 @@ class xdebug (
       notify  => Service["php${php_version}-fpm"],
     }
 
-    package { 'php5-fpm':
-        ensure => absent
-      }
-    }
+  }
 }
