@@ -7,11 +7,17 @@ A Chassis extension to install and configure Xdebug on your Chassis server.
 3. Run `vagrant provision`.
 
 ## PHPStorm Setup
-
+### In Chrome
 1. Install [Xdebug Helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc).
-2. Go to Settings -> More Tools -> Extensions in Google Chrome.
+2. Go to `Settings -> More Tools -> Extensions` in Google Chrome.
 3. Scroll down to `Xdebug helper` and click Options.
 4. Change the IDE Key to `PhpStorm` and the value to `PHPSTORM` e.g.<br />![Xdebug Helper PHPStorm](https://bronsons-captured.s3.amazonaws.com/Xdebug_helper_2016-11-07_17-50-49.png)<br />
 5. Enable Xdebug Helper. e.g.<br />![Enable Xdebug helper](https://bronsons-captured.s3.amazonaws.com/xdebug.png)<br />
-6. Enable `Start Listening for PHP Debug Connections` in PHPStorm. e.g.<br />![Listen For PHP Debug Connections](https://bronsons-captured.s3.amazonaws.com/README.md_-_nodeissue_-_VolumesSitesnodeissue_2016-11-07_17-57-45.png)<br />
-7. Set a breakpoint in PhpStorm and refresh the page you wish to debug in the browser and start debugging!
+
+### In PHPStorm
+6. Go to `Preferences -> Languages + Frameworks -> PHP -> Servers` and add a mapping for your website.
+ - `File/Directory` should be set to chassis folder (i.e. where the `Vagrantfile` is in).
+ - `Absolute path on the server` should be set to `/vagrant`.
+  e.g.
+7. Enable `Start Listening for PHP Debug Connections` e.g.<br />![Listen For PHP Debug Connections](https://bronsons-captured.s3.amazonaws.com/README.md_-_nodeissue_-_VolumesSitesnodeissue_2016-11-07_17-57-45.png)<br />
+8. Set a breakpoint in PHPStorm and refresh the page you wish to debug in the browser and start debugging!
