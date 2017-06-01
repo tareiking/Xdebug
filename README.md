@@ -18,6 +18,6 @@ A Chassis extension to install and configure Xdebug on your Chassis server.
 6. Go to `Preferences -> Languages + Frameworks -> PHP -> Servers` and add a mapping for your website.
  - `File/Directory` should be set to chassis folder (i.e. where the `Vagrantfile` is in).
  - `Absolute path on the server` should be set to `/vagrant`.
-  e.g.
+  e.g.<br />![Server mapping in PHPStorm](https://bronsons-captured.s3.amazonaws.com/phpstorm.png)<br />
 7. Enable `Start Listening for PHP Debug Connections` e.g.<br />![Listen For PHP Debug Connections](https://bronsons-captured.s3.amazonaws.com/README.md_-_nodeissue_-_VolumesSitesnodeissue_2016-11-07_17-57-45.png)<br />
 8. Set a breakpoint in PHPStorm and refresh the page you wish to debug in the browser and start debugging!
