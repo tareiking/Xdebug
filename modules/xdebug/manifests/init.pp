@@ -1,10 +1,19 @@
 # A Chassis extension to install and configure Xdebug on your Chassis server
 class xdebug (
   $path        = '/vagrant/extensions/xdebug',
-  $remote_host = $::chassis_config[hosts],
-  $php_version = $::chassis_config[php]
+  $remote_host  = $::chassis_config[hosts],
+  $php_version  = $::chassis_config[php],
+  $ide          = $::chassis_config[ide]
 ) {
   $hosts = join($::chassis_config[hosts],',')
+
+  # For backwards compatibility we'll keep PHPSTORM as the default
+  if undef == $ide {
+    $ide_name = 'PHPSTORM'
+  } else {
+    $ide_name = $ide
+  }
+
   if versioncmp( "${php_version}", '5.6') < 0 {
     package { 'php5-xdebug':
         ensure  => latest,
