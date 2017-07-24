@@ -29,3 +29,6 @@ If you'd like to enable Xdebug Profiling you can do so by doing either of the fo
 1. Append `?XDEBUG_PROFILE=1` to a URL you'd like to profile.
 2. Add `1` to the Xdebug Helper ![Chrome extension](https://bronsons-captured.s3.amazonaws.com/Xdebug_helper__2017-06-21_23-26-03.png).
 3. The profiling logs will be save on your Chassis VM under `/tmp`. You'll need to `vagrant ssh` then `cd /tmp` to view them.
+
+## Troubleshooting
+If you're having issues with XDebug not working then there is a chance that port 9000 is being used by some other software on your computer. To work around this change the [port number](https://github.com/Chassis/Xdebug/blob/master/modules/xdebug/templates/xdebug.ini.erb#L6) to another value. e.g. `9001` and run `vagrant provision`
