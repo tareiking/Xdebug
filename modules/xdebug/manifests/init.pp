@@ -39,7 +39,7 @@ class xdebug (
     }
   } else {
     package { 'php-xdebug':
-      ensure  =>  $package,
+      ensure  => $package,
       require => Package["php${php_version}-fpm"],
       notify  => Service["php${php_version}-fpm"],
     }
