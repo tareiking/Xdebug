@@ -14,22 +14,14 @@ class xdebug (
     $ide_name = $ide
   }
 
-  if ( ! empty( $::xdebug_config[disabled_extensions] ) and 'xdebug' in $::xdebug_config[disabled_extensions] ) {
-    $package = absent
-    $file    = absent
-  } else {
-    $package = latest
-    $file    = 'present'
-  }
-
   if versioncmp( "${php_version}", '5.6') < 0 {
     package { 'php5-xdebug':
-        ensure  => $package,
-        require => Package['php5-fpm']
+        ensure  => latest,
+        require => Package['php5-cli', 'php5-fpm']
     }
 
     file { '/etc/php5/fpm/conf.d/xdebug.ini':
-      ensure  => $file,
+      ensure  => 'present',
       content => template('xdebug/xdebug.ini.erb'),
       owner   => 'root',
       group   => 'root',
@@ -37,15 +29,24 @@ class xdebug (
       require => Package['php5-fpm','php5-xdebug'],
       notify  => Service['php5-fpm'],
     }
+
+    file { '/etc/php5/cli/conf.d/xdebug.ini':
+      ensure  => 'present',
+      content => template('xdebug/xdebug.ini.erb'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      require => Package['php5-cli','php5-xdebug'],
+    }
   } else {
     package { 'php-xdebug':
-      ensure  => $package,
-      require => Package["php${php_version}-fpm"],
+      ensure  => latest,
+      require => Package["php${php_version}-fpm", "php${php_version}-cli"],
       notify  => Service["php${php_version}-fpm"],
     }
 
     file { "/etc/php/${php_version}/fpm/conf.d/xdebug.ini":
-      ensure  => $file,
+      ensure  => 'present',
       content => template('xdebug/xdebug.ini.erb'),
       owner   => 'root',
       group   => 'root',
@@ -54,5 +55,23 @@ class xdebug (
       notify  => Service["php${php_version}-fpm"],
     }
 
+    file { "/etc/php/${php_version}/cli/conf.d/xdebug.ini":
+      ensure  => 'present',
+      content => template('xdebug/xdebug.ini.erb'),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      require => Package["php${php_version}-cli",'php-xdebug'],
+    }
+  }
+
+  # Export necessary env vars
+  file_line { 'PHP_IDE_CONFIG':
+    path => '/etc/environment',
+    line => "PHP_IDE_CONFIG=\"serverName=${hosts}\""
+  }
+  file_line { 'XDEBUG_CONFIG':
+    path => '/etc/environment',
+    line => "XDEBUG_CONFIG=\"idekey=${ide_name}\""
   }
 }
