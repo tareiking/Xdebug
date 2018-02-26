@@ -13,7 +13,7 @@ class xdebug (
   } else {
     $ide_name = $ide
   }
-  
+
   if ( ! empty( $::xdebug_config[disabled_extensions] ) and 'xdebug' in $::xdebug_config[disabled_extensions] ) {
     $package = absent
     $file    = absent
