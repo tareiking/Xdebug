@@ -13,15 +13,23 @@ class xdebug (
   } else {
     $ide_name = $ide
   }
+  
+  if ( ! empty( $::xdebug_config[disabled_extensions] ) and 'xdebug' in $::xdebug_config[disabled_extensions] ) {
+    $package = absent
+    $file    = absent
+  } else {
+    $package = latest
+    $file    = 'present'
+  }
 
   if versioncmp( "${php_version}", '5.6') < 0 {
     package { 'php5-xdebug':
-        ensure  => latest,
+        ensure  => $package,
         require => Package['php5-cli', 'php5-fpm']
     }
 
     file { '/etc/php5/fpm/conf.d/xdebug.ini':
-      ensure  => 'present',
+      ensure  => $file,
       content => template('xdebug/xdebug.ini.erb'),
       owner   => 'root',
       group   => 'root',
@@ -31,7 +39,7 @@ class xdebug (
     }
 
     file { '/etc/php5/cli/conf.d/xdebug.ini':
-      ensure  => 'present',
+      ensure  => $file,
       content => template('xdebug/xdebug.ini.erb'),
       owner   => 'root',
       group   => 'root',
@@ -40,13 +48,13 @@ class xdebug (
     }
   } else {
     package { 'php-xdebug':
-      ensure  => latest,
+      ensure  => $package,
       require => Package["php${php_version}-fpm", "php${php_version}-cli"],
       notify  => Service["php${php_version}-fpm"],
     }
 
     file { "/etc/php/${php_version}/fpm/conf.d/xdebug.ini":
-      ensure  => 'present',
+      ensure  => $file,
       content => template('xdebug/xdebug.ini.erb'),
       owner   => 'root',
       group   => 'root',
@@ -56,7 +64,7 @@ class xdebug (
     }
 
     file { "/etc/php/${php_version}/cli/conf.d/xdebug.ini":
-      ensure  => 'present',
+      ensure  => $file,
       content => template('xdebug/xdebug.ini.erb'),
       owner   => 'root',
       group   => 'root',
