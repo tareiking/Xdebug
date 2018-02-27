@@ -7,6 +7,9 @@ class xdebug (
 ) {
   $hosts = join($::xdebug_config[hosts],',')
 
+  # Use the SSH client IP for the remote host
+  $ssh_ip = generate('/bin/sh', '-c', 'echo $SSH_CLIENT | cut -d "=" -f 2 | awk \'{print $1}\'')
+
   # For backwards compatibility we'll keep PHPSTORM as the default
   if undef == $ide {
     $ide_name = 'PHPSTORM'
@@ -69,11 +72,11 @@ class xdebug (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      require => Package["php${php_version}-cli",'php-xdebug'],
+      require => Package["php${php_version}-cli", 'php-xdebug'],
     }
   }
 
-  # Export necessary env vars
+  # Export env vars for CLI support
   file_line { 'PHP_IDE_CONFIG':
     path => '/etc/environment',
     line => "PHP_IDE_CONFIG=\"serverName=${hosts}\""
