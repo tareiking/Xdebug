@@ -26,7 +26,7 @@ class xdebug (
 		$file    = 'present'
 	}
 
-	if versioncmp( "${php_version}", '5.6') < 0 {
+	if versioncmp( $php_version, '5.6') < 0 {
 		package { 'php5-xdebug':
 			ensure  => $package,
 			require => Package['php5-cli', 'php5-fpm']
