@@ -1,11 +1,12 @@
 # A Chassis extension to install and configure Xdebug on your Chassis server
 class xdebug (
+  $config,
   $path        = '/vagrant/extensions/xdebug',
-  $remote_host  = $::xdebug_config[hosts],
-  $php_version  = $::xdebug_config[php],
-  $ide          = $::xdebug_config[ide]
+  $remote_host  = $config[hosts],
+  $php_version  = $config[php],
+  $ide          = $config[ide]
 ) {
-  $hosts = join($::xdebug_config[hosts],',')
+  $hosts = join($config[hosts],',')
 
   # Use the SSH client IP for the remote host
   $ssh_ip = generate('/bin/sh', '-c', 'echo $SSH_CLIENT | cut -d "=" -f 2 | awk \'{print $1}\'')
@@ -17,7 +18,7 @@ class xdebug (
     $ide_name = $ide
   }
 
-  if ( ! empty( $::xdebug_config[disabled_extensions] ) and 'chassis/xdebug' in $::xdebug_config[disabled_extensions] ) {
+  if ( ! empty( $config[disabled_extensions] ) and 'chassis/xdebug' in $config[disabled_extensions] ) {
     $package = absent
     $file    = absent
   } else {
