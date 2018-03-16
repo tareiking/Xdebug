@@ -38,8 +38,8 @@ A Chassis extension to install and configure Xdebug on your Chassis server.
 ### VS Code
 6. Go to the VS Code Extensions manager (or enter "Install Extensions" in the command palette) and install & activate the [PHP Debug](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug) extension.
 7. Go to the Debug tab in the sidebar and click the small gear icon at the top of the left column; select "PHP" from the menu that will pop up to auto-create a `launch.json` PHP debugging configuration file in your project<br />![Selecting the "configure launch.json" button in VS Code](https://user-images.githubusercontent.com/442115/37500902-5055a80c-28a2-11e8-85f2-fe66c943ba7b.png)
-8. Add a "pathMappings" key to the "Listen for Xdebug" launch configuration to map the workspace root to the `/vagrant` directory within the virtual machine _e.g._<br />![Configuring pathMappings inside VS Code launch.json file](https://user-images.githubusercontent.com/442115/37501200-94d167cc-28a3-11e8-958d-7a36ab0e9d27.png)
-9. Click `Start Debugging` in the left column of the Debug tab _e.g._<br />![The "Start Debugging" button in VS Code](https://user-images.githubusercontent.com/442115/37501465-e7d620ba-28a4-11e8-8a2f-9857bdc04871.png)
+8. Add a "pathMappings" key to the "Listen for Xdebug" launch configuration to map the workspace root to the `/vagrant` directory within the virtual machine _e.g._<br />![Configuring "pathMappings": { "/vagrant": "${workspaceRoot}" } inside VS Code launch.json file](https://user-images.githubusercontent.com/442115/37502019-418bff06-28a7-11e8-9bc8-34129d9a93fc.png)
+9. Click `Start Debugging` in the left column of the Debug tab _e.g._<br />![The "Start Debugging" button in VS Code](https://user-images.githubusercontent.com/442115/37501949-ed1803e8-28a6-11e8-81f8-3cdaf7d6c1ce.png)
 9. Set a breakpoint in VS Code, refresh the page you with to debug in the browser, and start debugging!
 
 ## Xdebug Profiling
