@@ -4,7 +4,8 @@ class xdebug (
 	$path        = '/vagrant/extensions/xdebug',
 	$remote_host  = $config[hosts],
 	$php_version  = $config[php],
-	$ide          = $config[ide]
+	$ide          = $config[ide],
+	$port         = $config[port]
 ) {
 	$hosts = join($config[hosts],',')
 
@@ -16,6 +17,12 @@ class xdebug (
 		$ide_name = 'PHPSTORM'
 	} else {
 		$ide_name = $ide
+	}
+
+	if undef == $port {
+		$port_number = 9000
+	} else {
+		$port_number = $port
 	}
 
 	if ( ! empty( $config[disabled_extensions] ) and 'chassis/xdebug' in $config[disabled_extensions] ) {
