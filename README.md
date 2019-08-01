@@ -1,8 +1,20 @@
 # Xdebug
 A Chassis extension to install and configure Xdebug on your Chassis server.
 
-## Usage
-1. Add this extension to your extensions directory `git clone git@github.com:Chassis/Xdebug.git extensions/xdebug`
+## Global Installation
+
+We recommend [installing this extension globally](http://docs.chassis.io/en/latest/extend/#globally-installing-extensions) to make it available on every Chassis box.
+
+```
+git clone https://github.com/Chassis/SequelPro ~/.chassis/extensions/sequelpro
+```
+
+## Project Installation
+1. Add this extension to your extensions directory `git clone git@github.com:Chassis/Xdebug.git extensions/xdebug` or alternatively add the following to one of your [`.yaml`](https://github.com/Chassis/Chassis/blob/master/config.yaml) files:
+   ```
+   extensions:
+     - chassis/xdebug
+   ```
 2. Set your `config.local.yaml` PHP version to 5.6 or higher.
 3. Run `vagrant provision`.
 4. By default PHPSTORM is the default IDE. This can be overridden in your any of your [`.yaml`](https://github.com/Chassis/Chassis/blob/master/config.yaml#L6-#L9) files by adding in:
