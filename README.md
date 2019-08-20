@@ -44,7 +44,7 @@ git clone https://github.com/Chassis/SequelPro ~/.chassis/extensions/sequelpro
 ### In PHPStorm
 6. Go to `Preferences -> Languages + Frameworks -> PHP -> Servers` and add a mapping for your website.
  - `File/Directory` should be set to chassis folder (i.e. where the `Vagrantfile` is in).
- - `Absolute path on the server` should be set to `/vagrant`.
+ - `Absolute path on the server` should be set to `/vagrant` or if you are using [paths](http://docs.chassis.io/en/latest/config/#paths) this will be `/chassis`.
   _e.g._<br />![Server mapping in PHPStorm](https://bronsons-captured.s3.amazonaws.com/phpstorm.png)<br />
 7. Enable `Start Listening for PHP Debug Connections` _e.g._<br />![Listen For PHP Debug Connections](https://bronsons-captured.s3.amazonaws.com/README.md_-_nodeissue_-_VolumesSitesnodeissue_2016-11-07_17-57-45.png)<br />
 9. Set a breakpoint in PhpStorm, refresh the page you with to debug in the browser, and start debugging!
