@@ -6,7 +6,7 @@ A Chassis extension to install and configure Xdebug on your Chassis server.
 We recommend [installing this extension globally](http://docs.chassis.io/en/latest/extend/#globally-installing-extensions) to make it available on every Chassis box.
 
 ```
-git clone https://github.com/Chassis/SequelPro ~/.chassis/extensions/sequelpro
+git clone https://github.com/Chassis/Xdebug ~/.chassis/extensions/xdebug
 ```
 
 ## Project Installation
