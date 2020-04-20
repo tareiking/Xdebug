@@ -64,3 +64,6 @@ If you'd like to enable Xdebug Profiling you can do so by doing either of the fo
 
 ## Troubleshooting
 If you're having issues with XDebug not working then there is a chance that port 9000 is being used by some other software on your computer. To work around this change the [port number](https://github.com/Chassis/Xdebug/blob/master/modules/xdebug/templates/xdebug.ini.erb#L6) to another value. e.g. `9001` and run `vagrant provision`.
+
+When using VS Code specifically, if the debug session immediately stops after clicking the "run" button next to your "Listen for XDebug" task you should try fully uninstalling and then reinstalling the PHP Debug extension.
+
